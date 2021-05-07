@@ -1,5 +1,49 @@
 <div class="mainContainer">
     <div class="contentContainer">
+      <div class="formContainer">
+        <button mat-raised-button *ngIf="!buttonsControl" (click)="cleanForm()" style="margin-bottom: 5%">
+          <mat-icon>keyboard_backspace</mat-icon>
+        </button><br>
+        <form [formGroup]="form" >
+            <mat-form-field class="fildSize">
+                <mat-label>Modelo</mat-label>
+                <input id="textarea" matInput  
+                    placeholder="" 
+                    formControlName="modelo">
+            </mat-form-field> 
+
+            <mat-form-field class="fildSize" >
+                <mat-label>Marca</mat-label>
+                <input  id="textarea" matInput   
+                    placeholder="" 
+                    formControlName="marca">
+            </mat-form-field> 
+
+            <mat-form-field class="fildSize" >
+                <mat-label>Cor</mat-label>
+                <input id="textarea" matInput  
+                    placeholder="" 
+                    formControlName="cor">
+            </mat-form-field> 
+
+            <mat-form-field class="fildSize" >
+                <mat-label>Placa</mat-label>
+                <input id="textarea" matInput 
+                    placeholder="" 
+                    formControlName="placa">
+            </mat-form-field> 
+
+            <button *ngIf="buttonsControl" mat-raised-button color="primary" 
+              (click)="insertCar()" style="float: right;">Submit
+            </button>
+            <button *ngIf="!buttonsControl" mat-raised-button color="primary"
+              (click)="updateCar()"style="float: right;">Atualizar
+            </button>
+            <button *ngIf="!buttonsControl" mat-raised-button class="deleteButton" 
+              (click)="deleteCar()">Exclur
+            </button>
+        </form>
+    </div>
         <div class="tableContainer">
             <table mat-table [dataSource]="dataSource" class="table">
               <ng-container matColumnDef="modelo">
@@ -27,49 +71,6 @@
             </table>
         </div>
         
-        <div class="formContainer">
-            <button mat-raised-button *ngIf="!buttonsControl" (click)="cleanForm()" style="margin-bottom: 5%">
-              <mat-icon>keyboard_backspace</mat-icon>
-            </button><br>
-            <form [formGroup]="form" >
-                <mat-form-field class="fildSize">
-                    <mat-label>Modelo</mat-label>
-                    <input id="textarea" matInput  
-                        placeholder="" 
-                        formControlName="modelo">
-                </mat-form-field> 
-
-                <mat-form-field class="fildSize" >
-                    <mat-label>Marca</mat-label>
-                    <input  id="textarea" matInput   
-                        placeholder="" 
-                        formControlName="marca">
-                </mat-form-field> 
-
-                <mat-form-field class="fildSize" >
-                    <mat-label>Cor</mat-label>
-                    <input id="textarea" matInput  
-                        placeholder="" 
-                        formControlName="cor">
-                </mat-form-field> 
-
-                <mat-form-field class="fildSize" >
-                    <mat-label>Placa</mat-label>
-                    <input id="textarea" matInput 
-                        placeholder="" 
-                        formControlName="placa">
-                </mat-form-field> 
-
-                <button *ngIf="buttonsControl" mat-raised-button color="primary" 
-                  (click)="insertCar()" style="float: right;">Submit
-                </button>
-                <button *ngIf="!buttonsControl" mat-raised-button color="primary"
-                  (click)="updateCar()"style="float: right;">Atualizar
-                </button>
-                <button *ngIf="!buttonsControl" mat-raised-button class="deleteButton" 
-                  (click)="deleteCar()">Exclur
-                </button>
-            </form>
-        </div>
+        
     </div>
 </div>
