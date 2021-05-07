@@ -1,6 +1,6 @@
 import { JsonpClientBackend } from '@angular/common/http';
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { SinglePageService } from '../service/single-page.service';
@@ -39,10 +39,10 @@ export class SinglePageComponent implements AfterViewInit {
 
   buldForm(){
     this.form = this.formBuilder.group({
-      modelo : [''],
-      marca : [''],
-      cor : [''],
-      placa : [''],
+      modelo : ['', [Validators.required]],
+      marca : ['' ,[Validators.required]],
+      cor : ['', [Validators.required]],
+      placa : ['',[Validators.required]],
     })
   }
 
@@ -54,10 +54,17 @@ export class SinglePageComponent implements AfterViewInit {
   }
 
   insertCar(){
-    var car;
-    this.service.insertCar(car).subscribe(response =>{
-      console.log(response)
-    })
+    if (this.form.valid) {
+      let body = {
+        "modelo" : this.form.value.modelo.toString(),
+        "marca": this.form.value.marca.toString(),
+        "cor": this.form.value.cor.toString(),
+        "placa": this.form.value.placa.toString()
+      }
+      this.service.insertCar(body).subscribe(response =>{
+        console.log(response)
+      })
+    }
   }
 
   updateCar(){
@@ -93,6 +100,10 @@ export class SinglePageComponent implements AfterViewInit {
     this.form.controls['marca'].setValue('');
     this.form.controls['cor'].setValue('');
     this.form.controls['placa'].setValue('');
+  }
+
+  handleError = (controlName: string, errorName: string) => {
+    return this.form.controls[controlName].hasError(errorName);
   }
 }
 

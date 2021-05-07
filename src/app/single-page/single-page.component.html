@@ -10,6 +10,7 @@
                 <input id="textarea" matInput  
                     placeholder="" 
                     formControlName="modelo">
+                    <mat-error *ngIf="handleError('modelo', 'required')">Campo obrigatório ! </mat-error>
             </mat-form-field> 
 
             <mat-form-field class="fildSize" >
@@ -17,6 +18,7 @@
                 <input  id="textarea" matInput   
                     placeholder="" 
                     formControlName="marca">
+                    <mat-error *ngIf="handleError('marca', 'required')">Campo obrigatório ! </mat-error>
             </mat-form-field> 
 
             <mat-form-field class="fildSize" >
@@ -24,6 +26,7 @@
                 <input id="textarea" matInput  
                     placeholder="" 
                     formControlName="cor">
+                    <mat-error *ngIf="handleError('cor', 'required')">Campo obrigatório ! </mat-error>
             </mat-form-field> 
 
             <mat-form-field class="fildSize" >
@@ -31,6 +34,7 @@
                 <input id="textarea" matInput 
                     placeholder="" 
                     formControlName="placa">
+                    <mat-error *ngIf="handleError('placa', 'required')">Campo obrigatório ! </mat-error>
             </mat-form-field> 
 
             <button *ngIf="buttonsControl" mat-raised-button color="primary" 
