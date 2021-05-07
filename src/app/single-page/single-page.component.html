@@ -2,63 +2,73 @@
     <div class="contentContainer">
         <div class="tableContainer">
             <table mat-table [dataSource]="dataSource" class="table">
-          
-              <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+              <ng-container matColumnDef="modelo">
+                <th mat-header-cell *matHeaderCellDef> Modelo </th>
+                <td mat-cell *matCellDef="let car"> {{car.modelo}} </td>
               </ng-container>
 
-              <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+              <ng-container matColumnDef="marca">
+                <th mat-header-cell *matHeaderCellDef> Marca </th>
+                <td mat-cell *matCellDef="let car"> {{car.marca}} </td>
               </ng-container>    
 
-              <ng-container matColumnDef="weight">
-                <th mat-header-cell *matHeaderCellDef> Weight </th>
-                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+              <ng-container matColumnDef="cor">
+                <th mat-header-cell *matHeaderCellDef> Cor </th>
+                <td mat-cell *matCellDef="let car"> {{car.cor}} </td>
               </ng-container>
           
-              <ng-container matColumnDef="symbol">
-                <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+              <ng-container matColumnDef="placa">
+                <th mat-header-cell *matHeaderCellDef> Placa </th>
+                <td mat-cell *matCellDef="let car"> {{car.placa}} </td>
               </ng-container>
           
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="setLineValues(row)"></tr>
             </table>
         </div>
-
+        
         <div class="formContainer">
+            <button mat-raised-button *ngIf="!buttonsControl" (click)="cleanForm()" style="margin-bottom: 5%">
+              <mat-icon>keyboard_backspace</mat-icon>
+            </button><br>
             <form [formGroup]="form" >
                 <mat-form-field class="fildSize">
-                    <mat-label>Name</mat-label>
+                    <mat-label>Modelo</mat-label>
                     <input id="textarea" matInput  
                         placeholder="" 
-                        formControlName="name">
+                        formControlName="modelo">
                 </mat-form-field> 
 
                 <mat-form-field class="fildSize" >
-                    <mat-label>Position</mat-label>
+                    <mat-label>Marca</mat-label>
                     <input  id="textarea" matInput   
                         placeholder="" 
-                        formControlName="position">
+                        formControlName="marca">
                 </mat-form-field> 
 
                 <mat-form-field class="fildSize" >
-                    <mat-label>Weight</mat-label>
+                    <mat-label>Cor</mat-label>
                     <input id="textarea" matInput  
                         placeholder="" 
-                        formControlName="weight">
+                        formControlName="cor">
                 </mat-form-field> 
 
                 <mat-form-field class="fildSize" >
-                    <mat-label>Symbol</mat-label>
+                    <mat-label>Placa</mat-label>
                     <input id="textarea" matInput 
                         placeholder="" 
-                        formControlName="symbol">
+                        formControlName="placa">
                 </mat-form-field> 
 
-                <button mat-raised-button color="primary" style="float: right;">Submit</button>
+                <button *ngIf="buttonsControl" mat-raised-button color="primary" 
+                  (click)="insertCar()" style="float: right;">Submit
+                </button>
+                <button *ngIf="!buttonsControl" mat-raised-button color="primary"
+                  (click)="updateCar()"style="float: right;">Atualizar
+                </button>
+                <button *ngIf="!buttonsControl" mat-raised-button class="deleteButton" 
+                  (click)="deleteCar()">Exclur
+                </button>
             </form>
         </div>
     </div>

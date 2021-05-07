@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  front:
+    build: .
+    ports:
+      - "8080:80"
+  back:
+    image: "dash7/basicnginxflask"
+    ports:
+        - "5000:80"
