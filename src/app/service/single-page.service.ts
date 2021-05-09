@@ -13,8 +13,11 @@ export class SinglePageService {
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json',
-    'dataType': 'jsonp',
-    'Access-Control-Allow-Origin':'*'},)
+    'Content-Length':'<calculated when request is sent>',
+    'Access-Control-Allow-Origin':'*',
+    'Accept':'*/*',
+    'Accept-Encoding':'gzip, deflate, br',
+    'Connection':'keep-alive'})
   }
 
   getCars(){
@@ -23,8 +26,8 @@ export class SinglePageService {
   }
 
   insertCar(car){
-    return this.http.post<any>(`${environment.service}/insert`, car)
-   .pipe(catchError(this.errorHandl))
+    return this.http.post<any>(`${environment.service}/insert`, car, this.httpOptions)
+    .pipe(catchError(this.errorHandl))
   }
 
   updateCar(car){
@@ -33,7 +36,7 @@ export class SinglePageService {
   }
 
   deleteCar(carID){
-    return this.http.delete<any>(`${environment.service}/delete`, carID)
+    return this.http.delete<any>(`${environment.service}/delete/`+ carID, this.httpOptions)
    .pipe(catchError(this.errorHandl))
   }
 
