@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  service: "https://api-cars-backend.herokuapp.com"
 };
