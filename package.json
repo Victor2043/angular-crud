@@ -4,24 +4,24 @@
   "scripts": {
     "heroku-postbuild": "ng build --prod",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
   "engines": {
-    "node": "13.11.0",
+    "node": "12.14.0",
     "npm": "6.13.7"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.1.0",
     "@angular/cdk": "^9.2.4",
-    "@angular/cli": "^12.0.2",
+    "@angular/cli": "^9.1.0",
+    "@angular/compiler-cli": "^9.0.7",
     "@angular/common": "~9.1.0",
     "@angular/compiler": "~9.1.0",
-    "@angular/compiler-cli": "^9.1.13",
     "@angular/core": "~9.1.0",
     "@angular/forms": "~9.1.0",
     "@angular/material": "^9.2.4",
@@ -37,8 +37,8 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.901.0",
-    "@angular/cli": "^12.0.2",
-    "@angular/compiler-cli": "^9.1.13",
+    "@angular/cli": "^9.1.0",
+    "@angular/compiler-cli": "^9.0.7",
     "@angular/language-service": "~9.1.0",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
